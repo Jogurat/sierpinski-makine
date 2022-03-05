@@ -12,3 +12,5 @@ To use the bot, type into any text channel the bot sees, the following command: 
 If you prefer to use grammatically correct spelling, you can also use `trougAo 3`. 😁
 
 ![Screenshot](https://img001.prntscr.com/file/img001/wOCOWbWxReebmso5LdJajA.png)
+
+The bot will reply with a randomly generated Sierpinski Triangle with a mix of blue, yellow, red and green triangles, as a PNG image.
