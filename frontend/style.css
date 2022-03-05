@@ -35,11 +35,16 @@ canvas {
   align-items: center;
 }
 
+.side h1 {
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
 .discord-container {
   font: normal normal 600 normal 16px/20px Whitney, "Helvetica Neue", Helvetica,
     Arial, sans-serif;
   background-color: #323439;
-  margin-top: 10px;
   margin-bottom: 50px;
   padding: 15px 20px;
   border-radius: 4px;
@@ -109,10 +114,10 @@ canvas {
   border: 2px solid #ff4742;
   color: #fff;
   background-color: #ff4742;
-  padding: 8px;
+  padding: 8px 25px;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 2px 4px 0px,
     rgba(0, 0, 0, 0.05) 0px 1px 1.5px 0px;
-  font-weight: 800;
+  font-weight: bold;
   font-size: 16px;
   height: 42px;
   z-index: 100;
@@ -131,7 +136,10 @@ canvas {
   padding-top: 5px;
   padding-bottom: 5px;
   text-transform: uppercase;
-  font-weight: bold;
+}
+
+.btn-invite {
+  font-family: "Arial";
 }
 
 .colors-container {
@@ -185,5 +193,9 @@ canvas {
   }
   canvas {
     margin-top: -50px;
+  }
+  .generate-btn,
+  .copy-btn {
+    width: fit-content;
   }
 }
