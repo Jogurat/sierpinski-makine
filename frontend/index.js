@@ -1,106 +1,53 @@
-const copySucc = document.getElementById("copy-succ");
-const c = document.getElementById("canvas");
-const ctx = c.getContext("2d");
-const depthInput = document.getElementById("depth");
-const depthValue = document.getElementById("current-depth");
-
-let nums = "";
-let isRandom = true;
+// Dom elements
+const depthDisplay = document.getElementById("current-depth");
+const depthInput = document.querySelector("#depth");
+const clr1El = document.querySelector("#clr1");
+const clr2El = document.querySelector("#clr2");
+const clr3El = document.querySelector("#clr3");
 
 // Params
 const params = new Proxy(new URLSearchParams(window.location.search), {
   get: (searchParams, prop) => searchParams.get(prop),
 });
-
-const generate = (depth) => {
-  nums = "";
-  ctx.clearRect(0, 0, c.width, c.height);
-  let num = depthElement.value;
-  if (depth) num = depth;
-  createSierpinskiTriangle([0, 750], 750, num);
-};
-
-const createTriangle = (pos, sidelen) => {
-  ctx.beginPath();
-  ctx.moveTo(...pos);
-
-  let fillStyle = "";
-  if (!isRandom) {
-    // NOT RANDOM
-    colors = [clr1, clr2, clr3];
-    fillStyle = `#${colors[numSequence[counter++]]}`;
-  } else {
-    // RANDOM
-    colors = [...document.querySelectorAll("input[type='color']")];
-    const ran = Math.floor(Math.random() * colors.length);
-    fillStyle = colors[ran].value;
-    nums += ran;
-  }
-  ctx.fillStyle = fillStyle;
-  ctx.lineTo(pos[0] + sidelen / 2, pos[1] - sidelen * Math.sin(Math.PI / 3));
-  ctx.lineTo(pos[0] + sidelen, pos[1]);
-  ctx.lineTo(...pos);
-  ctx.closePath();
-  ctx.fill();
-};
-
-const createSierpinskiTriangle = (pos, sidelen, depth) => {
-  const innerTriangleSidelen = sidelen / 2;
-  const innerTrianglesPositions = [
-    pos,
-    [pos[0] + innerTriangleSidelen, pos[1]],
-    [
-      pos[0] + innerTriangleSidelen / 2,
-      pos[1] - Math.sin(Math.PI / 3) * innerTriangleSidelen,
-    ],
-  ];
-  if (depth == 0) {
-    innerTrianglesPositions.forEach((trianglePosition) => {
-      createTriangle(trianglePosition, innerTriangleSidelen);
-    });
-  } else {
-    innerTrianglesPositions.forEach((trianglePosition) => {
-      createSierpinskiTriangle(
-        trianglePosition,
-        innerTriangleSidelen,
-        depth - 1
-      );
-    });
-  }
-};
-
-const depthElement = document.querySelector("#depth");
-const clr1El = document.querySelector("#clr1");
-const clr2El = document.querySelector("#clr2");
-const clr3El = document.querySelector("#clr3");
 const depthParam = params.depth;
 const clr1 = params.clr1;
 const clr2 = params.clr2;
 const clr3 = params.clr3;
 const numSequence = params.nums;
-let counter = 0;
-// console.log("PARAMS" + value);
+
+// Global variables
+let isRandom = true;
+let nums = "";
+let numSequenceCounter = 0;
 let colors = [];
+
+// If clr1 param exists
 if (clr1) {
+  // Next generate will not be random
   isRandom = false;
-  console.log("NOT RANDOM POCETAK");
-  console.log("clr1 je " + clr1);
+
   // Populate the UI with the params
-  depthElement.value = depthParam;
-  depthValue.innerText = depthParam;
+  depthInput.value = depthParam;
+  depthDisplay.innerText = depthParam;
   clr1El.value = `#${clr1}`;
   clr2El.value = `#${clr2}`;
   clr3El.value = `#${clr3}`;
+
+  // Generate triangle
   generate(depthParam);
 
+  // Next generate will be random
   isRandom = true;
 }
 
+// Copy url
 const copyUrl = () => {
+  const copySucc = document.getElementById("copy-succ");
+
   let url = window.location.host;
 
   if (colors[0]) {
-    url += `?depth=${depthElement.value}&clr1=${colors[0].value.replace(
+    url += `?depth=${depthInput.value}&clr1=${colors[0].value.replace(
       "#",
       ""
     )}&clr2=${colors[1].value.replace("#", "")}&clr3=${colors[2].value.replace(
@@ -122,15 +69,8 @@ const copyUrl = () => {
   }, 2100);
 };
 
-// GAGI JS
-
-depthInput.addEventListener("input", (e) => {
-  depthValue.innerText = depthInput.value;
-});
-
-// Discord
+// Discord server data
 getDiscordData();
-
 async function getDiscordData() {
   const res = await fetch(
     "https://discord.com/api/guilds/949634776606838794/widget.json"
@@ -155,3 +95,69 @@ async function getDiscordData() {
     window.open(discordData.instant_invite, "_blank");
   });
 }
+
+// Triangle functions
+const canvasObj = document.getElementById("canvas");
+const ctx = canvasObj.getContext("2d");
+
+function generate(depth) {
+  nums = "";
+  ctx.clearRect(0, 0, canvasObj.width, canvasObj.height);
+  let num = depthInput.value;
+  if (depth) num = depth;
+  createSierpinskiTriangle([0, 750], 750, num);
+}
+
+function createTriangle(pos, sidelen) {
+  ctx.beginPath();
+  ctx.moveTo(...pos);
+
+  let fillStyle = "";
+  if (!isRandom) {
+    // NOT RANDOM
+    colors = [clr1, clr2, clr3];
+    fillStyle = `#${colors[numSequence[numSequenceCounter++]]}`;
+  } else {
+    // RANDOM
+    colors = [...document.querySelectorAll("input[type='color']")];
+    const ran = Math.floor(Math.random() * colors.length);
+    fillStyle = colors[ran].value;
+    nums += ran;
+  }
+  ctx.fillStyle = fillStyle;
+  ctx.lineTo(pos[0] + sidelen / 2, pos[1] - sidelen * Math.sin(Math.PI / 3));
+  ctx.lineTo(pos[0] + sidelen, pos[1]);
+  ctx.lineTo(...pos);
+  ctx.closePath();
+  ctx.fill();
+}
+
+function createSierpinskiTriangle(pos, sidelen, depth) {
+  const innerTriangleSidelen = sidelen / 2;
+  const innerTrianglesPositions = [
+    pos,
+    [pos[0] + innerTriangleSidelen, pos[1]],
+    [
+      pos[0] + innerTriangleSidelen / 2,
+      pos[1] - Math.sin(Math.PI / 3) * innerTriangleSidelen,
+    ],
+  ];
+  if (depth == 0) {
+    innerTrianglesPositions.forEach((trianglePosition) => {
+      createTriangle(trianglePosition, innerTriangleSidelen);
+    });
+  } else {
+    innerTrianglesPositions.forEach((trianglePosition) => {
+      createSierpinskiTriangle(
+        trianglePosition,
+        innerTriangleSidelen,
+        depth - 1
+      );
+    });
+  }
+}
+
+// Depth range event listener
+depthInput.addEventListener("input", (e) => {
+  depthDisplay.innerText = depthInput.value;
+});
