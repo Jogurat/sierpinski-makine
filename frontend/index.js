@@ -40,6 +40,38 @@ if (clr1) {
   isRandom = true;
 }
 
+// Discord server data
+getDiscordData();
+async function getDiscordData() {
+  const res = await fetch(
+    "https://discord.com/api/guilds/949634776606838794/widget.json"
+  );
+
+  const discordData = await res.json();
+
+  const onlineNumber = discordData.members.length;
+  const membersNumber = discordData.presence_count;
+
+  document.querySelector(
+    "#online-number"
+  ).innerHTML = `🟢 ${onlineNumber} Online`;
+
+  document.querySelector(
+    "#members-number"
+  ).innerHTML = `⚫ ${membersNumber} Members`;
+
+  console.log(discordData);
+
+  document.querySelector("#join-btn").addEventListener("click", () => {
+    window.open(discordData.instant_invite, "_blank");
+  });
+}
+
+// Depth range event listener
+depthInput.addEventListener("input", (e) => {
+  depthDisplay.innerText = depthInput.value;
+});
+
 // Copy url
 const copyUrl = () => {
   const copySucc = document.getElementById("copy-succ");
@@ -69,34 +101,7 @@ const copyUrl = () => {
   }, 2100);
 };
 
-// Discord server data
-getDiscordData();
-async function getDiscordData() {
-  const res = await fetch(
-    "https://discord.com/api/guilds/949634776606838794/widget.json"
-  );
-
-  const discordData = await res.json();
-
-  const onlineNumber = discordData.members.length;
-  const membersNumber = discordData.presence_count;
-
-  document.querySelector(
-    "#online-number"
-  ).innerHTML = `🟢 ${onlineNumber} Online`;
-
-  document.querySelector(
-    "#members-number"
-  ).innerHTML = `⚫ ${membersNumber} Members`;
-
-  console.log(discordData);
-
-  document.querySelector("#join-btn").addEventListener("click", () => {
-    window.open(discordData.instant_invite, "_blank");
-  });
-}
-
-// Triangle functions
+/////// Triangle functions ///////
 const canvasObj = document.getElementById("canvas");
 const ctx = canvasObj.getContext("2d");
 
@@ -156,8 +161,3 @@ function createSierpinskiTriangle(pos, sidelen, depth) {
     });
   }
 }
-
-// Depth range event listener
-depthInput.addEventListener("input", (e) => {
-  depthDisplay.innerText = depthInput.value;
-});
