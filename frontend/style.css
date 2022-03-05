@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=BioRhyme:wght@300;400;700;800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "BioRhyme", "Arial";
+}
+
+canvas {
+  margin-top: -90px;
+}
+
+.flex-container {
+  display: flex;
+  /* width: 100vw; */
+  justify-content: space-around;
+  margin-top: 15px;
+  padding: 0 10px;
+  padding-bottom: 50px;
+}
+
+.side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.discord-container {
+  font: normal normal 600 normal 16px/20px Whitney, "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  background-color: #323439;
+  padding: 10px;
+  border-radius: 4px;
+  width: 400px;
+}
+
+.discord-container .img-container {
+  width: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.discord-container .img-container img {
+  width: 100%;
+}
+
+.discord-container h2 {
+  font-size: 16px;
+  padding-bottom: 7px;
+  color: #b8b8b7;
+}
+
+.discord-container .server-name {
+  color: #f5f4f3;
+}
+
+.discord-container .info-container {
+  display: flex;
+  align-items: center;
+}
+
+.discord-container .info {
+  width: 100%;
+  padding-left: 10px;
+}
+
+.discord-container .members {
+  color: #646b76;
+  font-size: 12px;
+}
+
+.discord-container .cta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #16af56;
+  cursor: pointer;
+  color: #f6f6f7;
+  height: 40px;
+  border-radius: 4px;
+  width: 110px;
+}
+
+.discord-container .cta:hover {
+  background-color: #107c3d;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.btn {
+  display: inline-block;
+  outline: 0;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 2px solid #ff4742;
+  color: #fff;
+  background-color: #ff4742;
+  padding: 8px;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 2px 4px 0px,
+    rgba(0, 0, 0, 0.05) 0px 1px 1.5px 0px;
+  font-weight: 800;
+  font-size: 16px;
+  height: 42px;
+  z-index: 100;
+}
+
+.btn:hover {
+  background: 0 0;
+  color: #ff4742;
+}
+
+.generate-btn,
+.copy-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.generate-btn:hover,
+.copy-btn:hover {
+  cursor: pointer;
+}
+
+.colors-container {
+  margin-top: 15px;
+}
+
+.pr-15 {
+  padding-right: 15px;
+}
+
+.pl-15 {
+  padding-left: 15px;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.depth {
+  width: 100%;
+}
+
+.depth input {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.copied-successfully {
+  margin-top: 15px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  display: none;
+}
+
+.headerG {
+  text-transform: uppercase;
+  font-size: 16px;
+  text-align: center;
+  padding-top: 15px;
+  font-weight: 600;
+}
+
+@media (max-width: 1300px) {
+  .flex-container {
+    flex-direction: column;
+  }
+  canvas {
+    margin-top: -50px;
+  }
+}

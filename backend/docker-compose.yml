@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  makine-trougo:
+    image: ${WEB_SERVER_IMAGE}
+    ports:
+      - 7777:7777
+    environment:
+      - TOKEN
+    restart: always
