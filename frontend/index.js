@@ -81,12 +81,14 @@ const copyUrl = () => {
 
   let url = window.location.host;
 
+  if (nums == "") nums = numSequence;
+
   if (colors[0]) {
     console.log(colors[0]);
-    url += `?depth=${depthInput.value}&clr1=${colors[0].value.replace(
+    url += `?depth=${depthInput.value}&clr1=${colors[0].replace(
       "#",
       ""
-    )}&clr2=${colors[1].value.replace("#", "")}&clr3=${colors[2].value.replace(
+    )}&clr2=${colors[1].replace("#", "")}&clr3=${colors[2].replace(
       "#",
       ""
     )}&nums=${nums}`;
@@ -125,9 +127,12 @@ function createTriangle(pos, sidelen) {
     fillStyle = `#${colors[numSequence[numSequenceCounter++]]}`;
   } else {
     // RANDOM
-    colors = [...document.querySelectorAll("input[type='color']")];
+    // colors = [...document.querySelectorAll("input[type='color']")];
+    colors = [...document.querySelectorAll("input[type='color']")].map(
+      (x) => x.value
+    );
     const ran = Math.floor(Math.random() * colors.length);
-    fillStyle = colors[ran].value;
+    fillStyle = colors[ran];
     nums += ran;
   }
   ctx.fillStyle = fillStyle;
