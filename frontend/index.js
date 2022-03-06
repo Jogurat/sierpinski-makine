@@ -4,6 +4,9 @@ const depthInput = document.querySelector("#depth");
 const clr1El = document.querySelector("#clr1");
 const clr2El = document.querySelector("#clr2");
 const clr3El = document.querySelector("#clr3");
+//
+const canvasObj = document.getElementById("canvas");
+const ctx = canvasObj.getContext("2d");
 
 // Params
 const params = new Proxy(new URLSearchParams(window.location.search), {
@@ -79,6 +82,7 @@ const copyUrl = () => {
   let url = window.location.host;
 
   if (colors[0]) {
+    console.log(colors[0]);
     url += `?depth=${depthInput.value}&clr1=${colors[0].value.replace(
       "#",
       ""
@@ -102,9 +106,6 @@ const copyUrl = () => {
 };
 
 /////// Triangle functions ///////
-const canvasObj = document.getElementById("canvas");
-const ctx = canvasObj.getContext("2d");
-
 function generate(depth) {
   nums = "";
   ctx.clearRect(0, 0, canvasObj.width, canvasObj.height);
