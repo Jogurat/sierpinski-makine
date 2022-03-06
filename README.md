@@ -1,6 +1,6 @@
 # Sierpinski Triangle by Team "It Works On My Machine"
 
-This is the repo for the algorithm test for the "FONIS Hackathon 2022" competition.
+This is the repo for the algorithm test for the "FON Hakaton 2022" competition.
 
 It is a 2-part project, a all-frontend solution in Vanilla JS and a Discord bot made in Node.js.
 
