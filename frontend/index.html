@@ -24,6 +24,7 @@
             max="8"
             step="1"
             value="0"
+            class="slider"
           />
           <div id="current-depth">0</div>
         </div>
@@ -31,25 +32,27 @@
           class="d-flex colors-container justify-content-between text-center"
         >
           <div class="pr-15">
-            <div>Color #1</div>
+            <div>Pick Color #1</div>
             <input type="color" id="clr1" colorpick-eyedropper-active="false" />
           </div>
           <div>
-            <div>Color #2</div>
+            <div>Pick Color #2</div>
             <input type="color" id="clr2" colorpick-eyedropper-active="false" />
           </div>
           <div class="pl-15">
-            <div>Color #3</div>
+            <div>Pick Color #3</div>
             <input type="color" id="clr3" colorpick-eyedropper-active="false" />
           </div>
         </div>
         <button class="btn generate-btn" onclick="generate()">
-          Generate ☜(ﾟヮﾟ☜)
+          Generate
         </button>
         <button id="copy-btn" class="btn copy-btn" onclick="copyUrl()">
-          Copy URL ╰(*°▽°*)╯
+          Copy URL
         </button>
-        <div id="copy-succ" class="btn copied-successfully">URL Copied ✔</div>
+        <div id="copy-succ" class="btn copied-successfully">
+          URL Copied ✔
+        </div>
         <div class="headerG">IT WORKS ON MY<br />🤖MACHINE🤖</div>
       </div>
 
@@ -59,9 +62,7 @@
         <div class="discord-container">
           <h2>YOU'VE BEEN INVITED TO JOIN A SERVER</h2>
           <div class="info-container">
-            <div class="img-container">
-              <img src="disc.jpg" alt="" />
-            </div>
+            <div class="img-container"></div>
             <div class="info">
               <div class="server-name">🤖 MAKINE 🤖</div>
               <div class="members">
@@ -73,19 +74,18 @@
           </div>
         </div>
 
-        <h1
-          >Or invite the bot <br />
-          to your server!</h1
-        >
+        <h1>
+          Or invite the bot <br />
+          to your server!
+        </h1>
         <a
           href="https://discord.com/api/oauth2/authorize?client_id=949644847944437781&permissions=51200&scope=bot"
           class="btn btn-invite"
           target="_blank"
-          >INVITE ヾ(•ω•`)o</a
+          >INVITE</a
         >
       </div>
     </div>
-
     <script src="index.js"></script>
   </body>
 </html>
